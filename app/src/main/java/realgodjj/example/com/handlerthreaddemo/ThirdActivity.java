@@ -1,5 +1,6 @@
 package realgodjj.example.com.handlerthreaddemo;
 
+import android.content.pm.ResolveInfo;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;

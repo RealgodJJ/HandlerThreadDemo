@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         tvMessage = findViewById(R.id.tv_message);
 
         // 创建与主线程关联的Handler
-        mainHandler = new Handler(Looper.getMainLooper()) {
+        mainHandler = new Handler(Looper.getMainLooper())/* {
             @Override
             public void handleMessage(Message msg) {
                 switch (msg.what) {
@@ -38,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
             }
-        };
+        }*/;
+
         /**
          * 步骤①：创建HandlerThread实例对象
          * 传入参数 = 线程名字，作用 = 标记该线程
@@ -70,17 +71,17 @@ public class MainActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         // 通过主线程Handler.post方法进行在主线程的UI更新操作
-                        Message message1 = new Message();
-                        message1.what = 1;
-                        message1.obj = "A";
-                        workHandler.sendMessage(message1);
-//                        mainHandler.post(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                Log.d(TAG1, "handleMessage: " + Looper.myLooper().getThread().getId());
-//                                tvMessage.setText("第一次执行" + Looper.myLooper().getThread().getId());
-//                            }
-//                        });
+//                        Message message1 = new Message();
+//                        message1.what = 1;
+//                        message1.obj = "A";
+//                        mainHandler.sendMessage(message1);
+                        mainHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                Log.d(TAG1, "handleMessage: " + Looper.myLooper().getThread().getId());
+                                tvMessage.setText("第一次执行" + Looper.myLooper().getThread().getId());
+                            }
+                        });
                         break;
                     case 2:
                         try {
@@ -89,17 +90,17 @@ public class MainActivity extends AppCompatActivity {
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        Message message2 = new Message();
-                        message2.what = 2;
-                        message2.obj = "B";
-                        mainHandler.sendMessage(message2);
-//                        mainHandler.post(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                tvMessage.setText("第二次执行" + Looper.myLooper().getThread().getId());
-//                                Log.d(TAG1, "handleMessage: " + Looper.myLooper().getThread().getId());
-//                            }
-//                        });
+//                        Message message2 = new Message();
+//                        message2.what = 2;
+//                        message2.obj = "B";
+//                        mainHandler.sendMessage(message2);
+                        mainHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                tvMessage.setText("第二次执行" + Looper.myLooper().getThread().getId());
+                                Log.d(TAG1, "handleMessage: " + Looper.myLooper().getThread().getId());
+                            }
+                        });
                         break;
                     default:
                         break;
