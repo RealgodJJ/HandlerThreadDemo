@@ -46,9 +46,11 @@ public class ThirdActivity extends AppCompatActivity {
 
                     if (value <= 10) {
                         Message message = Message.obtain();
+//                        Message message = obtainMessage();
                         message.what = DELAY;
                         message.arg1 = value;
                         sendMessageDelayed(message, DELAY_TIME);
+//                        message.sendToTarget();
                     }
                     break;
             }

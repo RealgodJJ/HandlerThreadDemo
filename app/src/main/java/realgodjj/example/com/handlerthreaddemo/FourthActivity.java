@@ -12,8 +12,8 @@ public class FourthActivity extends AppCompatActivity {
     }
 
     public static void main(String[] args) {
-        MyRunnable t1 = new MyRunnable();
-//        MyThread t1 = new MyThread();
+//        MyRunnable t1 = new MyRunnable();
+        MyThread t1 = new MyThread();
         new Thread(t1, "线程1").start();
         new Thread(t1, "线程2").start();
     }
